@@ -19,7 +19,6 @@ from django.utils import timezone
 
 # we want to reuse some properties of Django models in our task class
 
-
 class TaskList(models.Model):
   name = models.CharField(max_length=50)
   created_at = models.DateTimeField(
@@ -36,7 +35,9 @@ class Task(models.Model):
   # column_name, type of the column: VARCHAR(50)
   name = models.CharField(max_length=50)
   desc = models.TextField()
-  created_at = models.DateTimeField()
+  created_at = models.DateTimeField(
+    default=timezone.now()
+  )
   due_date = models.DateTimeField()
   # change made
   list = models.ForeignKey(TaskList, on_delete=models.CASCADE)

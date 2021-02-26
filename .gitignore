@@ -1,3 +1,8 @@
+cypress.json
+package-lock.json
+cypress/
+node_modules/
+
 # Django #
 *.log
 *.pot
