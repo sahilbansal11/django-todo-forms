@@ -21,6 +21,7 @@ def add_task(request):
 
 def add_task_list(request):
   if request.method == 'POST':
+    print(request.POST) # dictionary
     name = request.POST['name']
     task_list = TaskList(name=name)
     task_list.save()
@@ -31,11 +32,15 @@ def add_task_list(request):
 def add_task_list_form(request):
   if request.method == 'POST':
     form = TaskListForm(data=request.POST)
-    # name = request.POST['name']
     if form.is_valid():
-      # task_list = TaskList(name=name)
-      # task_list.save()
-      new_task_list = form.save()
+      input_name = request.POST['name']
+
+      print('form', form)
+      print('name', input_name)
+
+      # keyword argument
+      task_list = TaskList(name=input_name)
+      task_list.save()
       return redirect('index')
   else:
     form = TaskListForm()
@@ -44,10 +49,15 @@ def add_task_list_form(request):
 def add_task_form(request):
   if request.method == 'POST':
     form = TaskForm(data=request.POST)
+
     if form.is_valid():
       new_task = form.save()
       return redirect('index')
   else:
     form = TaskForm()
   
+  print(form)
+  # if form not valid or if it's a get request we come to this part
+  # for get request: print new form
+  # for the post request: print the existing filled form
   return render(request, 'tasks/forms/new_task.html', {'form': form})

@@ -22,7 +22,7 @@ from django.utils import timezone
 class TaskList(models.Model):
   name = models.CharField(max_length=50)
   created_at = models.DateTimeField(
-    default=timezone.now()
+    default=timezone.now
   )
 
   # dunder str, magic method
@@ -36,7 +36,7 @@ class Task(models.Model):
   name = models.CharField(max_length=50)
   desc = models.TextField()
   created_at = models.DateTimeField(
-    default=timezone.now()
+    default=timezone.now
   )
   due_date = models.DateTimeField()
   # change made
