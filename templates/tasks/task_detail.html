@@ -1,0 +1,23 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+Trello App - Task Detail
+{% endblock %}
+
+{% block content %}
+
+<h1>Task - {{data.name}} </h1>
+
+<h2>
+  {{data.desc}}
+</h2>
+
+<h2>
+  {{data.created_at}}
+</h2>
+
+<h2>
+  {{data.due_date}}
+</h2>
+
+{% endblock %}

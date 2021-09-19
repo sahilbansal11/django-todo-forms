@@ -8,6 +8,11 @@ def index(request):
   lists = TaskList.objects.all()
   return render(request, 'tasks/index.html', {'tasks': tasks, 'lists': lists})
 
+def task_details(request, input_id):
+  task_data = Task.objects.get(id=input_id)
+  return render(request, 'tasks/task_detail.html', {'data': task_data})
+
+
 def add_task(request):
   if request.method == 'POST':
     name = request.POST['name']
@@ -50,13 +55,21 @@ def add_task_form(request):
   if request.method == 'POST':
     form = TaskForm(data=request.POST)
 
+    print('-----------------------------')
+    print('form before validation')
+    print(form)
+    print('-----------------------------')
+
     if form.is_valid():
       new_task = form.save()
       return redirect('index')
   else:
     form = TaskForm()
   
+  print('-----------------------------')
+  print('form after validation')
   print(form)
+  print('-----------------------------')
   # if form not valid or if it's a get request we come to this part
   # for get request: print new form
   # for the post request: print the existing filled form

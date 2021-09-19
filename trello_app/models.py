@@ -40,6 +40,7 @@ class Task(models.Model):
   )
   due_date = models.DateTimeField()
   # change made
+  # foreign key constraint
   list = models.ForeignKey(TaskList, on_delete=models.CASCADE)
 
   def __str__(self):

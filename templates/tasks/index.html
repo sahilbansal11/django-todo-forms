@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trello App - Tasks</title>
-</head>
-<body>
-  <h1>All List</h1>
-  <ul>
-    {% for list in lists %}
-    <li>{{ list.name }}</li>
-    {% endfor %}
-  </ul>
-  <h1>All Tasks</h1>
-  <ul>
-    {% for task in tasks %}
-    <li>{{ task.name }}</li>
-    {% endfor %}
-  </ul>
-</body>
-</html>
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+Trello App - Tasks
+{% endblock %}
+
+{% block content %}
+
+<h1>All List</h1>
+<ul>
+  {% for list in lists %}
+  <li>{{ list.name }}</li>
+  {% endfor %}
+</ul>
+<h1>All Tasks</h1>
+<ul>
+  {% for task in tasks %}
+  <li>
+    <!--     
+      <a
+        href="/tasks/task_details/{{ task.id }}"
+      >
+        {{ task.name }}
+      </a>
+    -->
+
+    <!-- USE URL TAG instead of hardcoding -->
+
+    <a
+      href="{% url 'task_detail_page' input_id=task.id %}"
+    >
+      {{ task.name }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
